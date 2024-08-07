@@ -1,4 +1,4 @@
-Package: write-seurat-object
+Package: writeseuratobject
 Type: Package
 Title: Conversion of single-cell data files to a Seurat Object
 Version: 0.0.1.0
