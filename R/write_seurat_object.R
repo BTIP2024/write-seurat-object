@@ -14,16 +14,16 @@
 #' @export
 write_seurat_object <- function(input) {
   if(grepl('.gz', input)){
-    obj <- Read10X(input)
+    obj <- Seurat::Read10X(input)
     saveRDS(obj, file = "seurat_object.rds")
   } else {
-    h5_data <- Read10X_h5(filename = input, use.names = TRUE, unique.features = TRUE)
+    h5_data <- Seurat::Read10X_h5(filename = input, use.names = TRUE, unique.features = TRUE)
     
-    if(grepl("Gene Expression", h5_data)) {
+    if("Gene Expression" %in% str(h5_data)) {
       cts <- h5_data$'Gene Expression'
-      obj <- CreateSeuratObject(counts = cts, project = "Seurat", min.cells = 3, min.features = 200)
+      obj <- Seurat::CreateSeuratObject(counts = cts, project = "Seurat", min.cells = 3, min.features = 200)
     } else {
-      obj <- CreateSeuratObject(counts = h5_data, project = "Seurat", min.cells = 3, min.features = 200)
+      obj <- Seurat::CreateSeuratObject(counts = h5_data, project = "Seurat", min.cells = 3, min.features = 200)
     }
   saveRDS(obj, file = "seurat_object.rds")
   }
