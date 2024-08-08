@@ -19,7 +19,7 @@ write_seurat_object <- function(input) {
   } else {
     h5_data <- Seurat::Read10X_h5(filename = input, use.names = TRUE, unique.features = TRUE)
     
-    if("Gene Expression" %in% str(h5_data)) {
+    if(! is.null(h5_data$'Gene Expression')) {
       cts <- h5_data$'Gene Expression'
       obj <- Seurat::CreateSeuratObject(counts = cts, project = "Seurat", min.cells = 3, min.features = 200)
     } else {
