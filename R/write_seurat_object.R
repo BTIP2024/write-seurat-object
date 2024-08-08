@@ -12,11 +12,8 @@
 #' @examples
 #' write_seurat_object("file.h5")
 #' @export
-write_seurat_object <- function(input){
-   if(grepl('.h5', input)) {
-      h5 <- hdf5r::H5File$new(input)
-      obj <- Seurat::CreateSeuratObject(counts = h5, project = "Seurat", min.cells = 3, min.features = 200)
-   } else if(grepl('.gz', input)){
+write_seurat_object <- function(input) {
+   if(grepl('.gz', input)){
       utils::untar(input, files = NULL, list = FALSE, exdir = "sample")
       new <- list.files(path = "./sample/", pattern = "*.gz", recursive = TRUE, full.names = T) #WORKED
       
@@ -24,6 +21,15 @@ write_seurat_object <- function(input){
       
       obj <- Seurat::Read10X(data.dir = ".")
       saveRDS(obj, file = "seurat_object.rds")
+   } else {
+      h5_data <- Seurat::Read10X_h5(filename = input, use.names = TRUE, unique.features = TRUE)
+      
+      if(class(h5_data) == "list") {
+         cts <- h5_data$'Gene Expression'
+         obj <- Seurat::CreateSeuratObject(counts = cts, project = "Seurat", min.cells = 3, min.features = 200)
+      } else {
+         obj <- Seurat::CreateSeuratObject(counts = h5_data, project = "Seurat", min.cells = 3, min.features = 200)
+      }
+      saveRDS(obj, file = "seurat_object.rds")
    }
 }
-
