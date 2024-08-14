@@ -10,7 +10,7 @@ write_seurat_object(input)
 \item{input}{is the single-cell data file}
 }
 \description{
-Supported formats are .gz and .h5 files.
+Supported formats are .gz, .h5, .h5ad, and .loom files.
 This requires the SeuratDisk package available only via github but can be installed
 with devtools::install_github
 }
