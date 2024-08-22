@@ -15,7 +15,7 @@
 write_seurat_object <- function(input) {
    if(grepl('.gz', input)){
       utils::untar(input, files = NULL, list = FALSE, exdir = "sample")
-      new <- list.files(path = "./sample/", pattern = "*.gz", recursive = TRUE, full.names = T) #WORKED
+      new <- list.files(path = "./sample/", pattern = "*.gz", recursive = TRUE, full.names = T)
       
       file.copy(from = new, to = ".", overwrite = T)
       
@@ -27,7 +27,7 @@ write_seurat_object <- function(input) {
       SeuratDisk::Convert(input, dest = "h5seurat", overwrite = TRUE)
       h5seurat <- list.files(path = ".", pattern = ".h5seurat", recursive = TRUE, full.names = T)
       obj <- SeuratDisk::LoadH5Seurat(h5seurat)
-   } else {
+   } else if(tools::file_ext(input) == "h5") {
       h5_data <- Seurat::Read10X_h5(filename = input, use.names = TRUE, unique.features = TRUE)
       
       if(class(h5_data) == "list") {
@@ -36,6 +36,9 @@ write_seurat_object <- function(input) {
       } else {
          obj <- Seurat::CreateSeuratObject(counts = h5_data, project = "Seurat", min.cells = 3, min.features = 200)
       } 
+   } else {
+      return("File format not supported")
    }
-   saveRDS(obj, file = "seurat_object.rds")
+   seurat_obj <- Seurat::UpdateSeuratObject(obj)
+   saveRDS(seurat_obj, file = "seurat_object.rds")
 }
