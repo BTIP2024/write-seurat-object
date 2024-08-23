@@ -2,7 +2,10 @@
 This package is for the creation of a Seurat object from single-cell RNA sequences files with the following file extensions: “.h5”, “.gz”, “.h5ad”, and “.loom”. 
 
 ## Installation
-The package can be installed using `devtools::install_github(“BTIP2024/write-seurat-object”)`
+The package can be installed using 
+```
+devtools::install_github(“BTIP2024/write-seurat-object”)
+```
 
 
 ## Example
@@ -24,5 +27,5 @@ The following are the repositories of the packages for every step of the pipelin
 6. Clustering: [nonlinearreduction package](https://github.com/BTIP2024/non-linear-reduction)
 7. Non-linear dimensionality reduction (t-SNE and UMAP): [nonlinearreduction package](https://github.com/BTIP2024/non-linear-reduction)
 
-An overview of the pipeline and their outputs can be observed below:
-![steps](https://github.com/user-attachments/assets/eff6edef-5d4b-4b16-a7f7-f5aebc5b6b17)
+An overview of the pipeline and its outputs can be observed below:
+![](https://github.com/user-attachments/assets/eff6edef-5d4b-4b16-a7f7-f5aebc5b6b17)
