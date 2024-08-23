@@ -4,18 +4,14 @@ This package is for the creation of a seurat object from single cell RNA sequenc
 The steps can be implemented individually using the functions within these associated packages
 
 ## Installation
-The package can be installed using 
+The package can be installed using `devtools::install_github(“BTIP2024/write-seurat-object”)`
 
-'''
-devtools::install_github(“BTIP2024/write-seurat-object”).
-'''
 
 ## Example
-The output of this function would be an rds file which when loaded in R, would be a Seurat object.
-
-'''
+The output of this function would be an rds file which when loaded in R, would be a Seurat object. 
+```
 write_seuratobject(“scRNAdata.h5”)
-'''
+```
 
 ## scRNAseq processing workflow 
 
