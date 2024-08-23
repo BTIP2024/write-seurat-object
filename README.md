@@ -1,7 +1,5 @@
 # write-seurat-object
-This package is for the creation of a seurat object from single cell RNA sequences files with the following file extensions: “.h5”, “.gz”, “.h5ad”, and “.loom”. 
-
-The steps can be implemented individually using the functions within these associated packages
+This package is for the creation of a Seurat object from single-cell RNA sequences files with the following file extensions: “.h5”, “.gz”, “.h5ad”, and “.loom”. 
 
 ## Installation
 The package can be installed using `devtools::install_github(“BTIP2024/write-seurat-object”)`
