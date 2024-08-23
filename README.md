@@ -10,7 +10,7 @@ The package can be installed using `devtools::install_github(“BTIP2024/write-s
 ## Example
 The output of this function would be an rds file which when loaded in R, would be a Seurat object. 
 ```
-write_seuratobject(“scRNAdata.h5”)
+write_seurat_object(“scRNAdata.h5”)
 ```
 
 ## scRNAseq processing workflow 
